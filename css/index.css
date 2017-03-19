@@ -1,0 +1,175 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+body{
+	background:url(../images/bg2.jpg) no-repeat center top;
+	background-size: cover;
+	background-attachment: fixed;
+	
+	font-family: 'Noto Sans TC', sans-serif;
+    font-size: 15px;
+}
+
+/* 由於 navbar fixed top */
+body { padding-top: 50px; }
+
+hr {
+	border-top: 2px solid #eee;
+}
+
+/* a */
+a{
+	font-size:1.4em;
+/*	font-weight:bold;*/
+}
+
+/* Table */
+table.table.table-striped{
+	border: 1px solid black;
+	border-color: #fff;
+	text-align: center;
+	align: center;
+}
+table.table.table-striped td{
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* Navbar */
+.navbar-inverse{
+	background-color: #fe7b89;
+	/*opacity:0.9;*/
+	border:0;
+	border-radius:0;
+	margin-bottom:0;
+	box-shadow: rgba(0,0,0,0.8) 0 0 10px 0;
+}
+a.navbar-brand{
+	padding: 6px 0px 0px 10px;
+	text-align : center;
+	vertical-align: middle;
+}
+.navbar-inverse .navbar-nav>.active>a, 
+.navbar-inverse .navbar-nav>.active>a:hover, 
+.navbar-inverse .navbar-nav>.active>a:focus{
+	background-color: #fe485c;
+	opacity:0.9;
+}
+
+.navbar-inverse .navbar-toggle,
+.navbar-inverse .navbar-toggle:hover, 
+.navbar-inverse .navbar-toggle:focus{
+	border-color: #fff;
+	background-color: #fe485c;
+}
+
+.navbar-inverse .navbar-collapse{
+    border-color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+	color: white;
+}
+
+.navbar-inverse .navbar-nav>.open>a, 
+.navbar-inverse .navbar-nav>.open>a:hover, 
+.navbar-inverse .navbar-nav>.open>a:focus{
+	color: #fe7b89;
+	background-color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover{
+	color: white;
+	background-color: #fe94a0;
+}
+
+/* Navbar Login */
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    /*background-color:rgba(255,255,255,.9);*/
+    background:white;
+    z-index: 1;
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.9);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+
+#sign{
+	background-color: #fe7b89;
+	border-color: #fe6878;
+}
+
+/*上層影片*/
+#intro{
+	background-color: transparent;
+	margin-bottom: 0;
+}
+/*#intro .embed-col{
+	float: right !important;
+}*/
+#intro h1{
+	font-size: 2.5em;
+}
+#intro-left .embed-col{
+	background-color: #4A4A4A;
+	box-shadow: rgba(0,0,0,0.8) 0 8px 33px 0;
+}
+
+#intro-right{
+	background-color: rgba(255, 255, 255, 0.4);
+	box-shadow: rgba(0,0,0,0.8) 3px 3px 10px 0;
+	z-index: -1;
+}
+@media screen and (max-width: 768px) {
+    #intro-right { 
+    	padding: 10px 10px 10px 10px; 
+    	margin: 20px 10px 0px 10px;
+    }
+}
+
+/*主要頁面*/
+#main{
+	padding: 20px 0px 50px 0px;
+	border-top: 2px solid #eee;
+}
+@media screen and (max-width: 768px) {
+    #main { 
+    	padding: 20px 0px 20px 0px;
+    }
+}
+
+#main-left{
+	background-color: rgba(255, 255, 255, 0.4);
+	box-shadow: rgba(0,0,0,0.8) 3px 3px 10px 0;
+}
+@media screen and (max-width: 768px) {
+    #main-left { 
+    	padding: 2px 10px 2px 10px; 
+    	margin: 0px 10px 0px 10px;
+    }
+}
+
+#searchResult{
+	margin-top: 40px;
+}
+#listBonusRate h3{
+	text-align: center;
+}
+
+/*合作銀行列表開始*/
+#coop-bank .thumbnail{
+	background-color: rgba(255, 255, 255, 0.4);
+	box-shadow: rgba(0,0,0,0.8) 3px 3px 10px 0;
+}
+
+/* 頁尾 */
+#footer{
+	margin: 30px 0px 20px 0px;
+}

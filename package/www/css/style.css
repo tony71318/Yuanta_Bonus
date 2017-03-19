@@ -1,0 +1,38 @@
+
+h1{
+	color:	#003377;
+}
+
+body{
+	background:url(../images/bg2.jpg) no-repeat center top;
+	background-size: cover;
+	background-attachment: fixed;
+	
+	font-family:cursive;
+    font-size: 15px;
+}
+
+a{
+	font-size:1.2em;
+	font-weight:bold;
+}
+
+.main{
+	padding-left:1em;
+	color:	#660077;
+	margin-bottom:3em;
+}
+
+.part{
+	margin-top:2em;
+	margin-bottom:2em;
+}
+
+.padding{
+	padding-left:2em;
+}
+
+.header{
+	background: rgba(246, 84, 106, 0.2);
+}
+

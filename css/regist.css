@@ -1,0 +1,146 @@
+/*
+/* Created by Filipe Pina
+ * Specific styles of signin, register, component
+ */
+/*
+ * General styles
+ */
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+body, html{
+    background:url(../images/bg2.jpg) no-repeat center top;
+    background-size: cover;
+    background-attachment: fixed;
+
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 15px;
+}
+
+/* a */
+a{
+    font-size:1.4em;
+/*  font-weight:bold;*/
+}
+
+h1.title { 
+	font-size: 40px;
+	font-weight: 400; 
+
+    font-family: 'cwTeXKai';
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+label{
+	margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+#margin{
+    margin-top: 90px;
+}
+
+.main-login{
+ 	background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: rgba(0,0,0,0.8) 0 8px 33px 0;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.main-center{
+ 	margin: 0 auto;
+ 	max-width: 330px;
+    padding: 20px 40px 30px 40px;
+
+}
+
+.login-button{
+	margin-top: 5px;
+}
+
+.login-register{
+	font-size: 11px;
+	text-align: center;
+}
+
+/* Navbar */
+.navbar-inverse{
+    background-color: #fe7b89;
+    /*opacity:0.9;*/
+    border:0;
+    border-radius:0;
+    margin-bottom:0;
+    box-shadow: rgba(0,0,0,0.8) 0 0 10px 0;
+}
+a.navbar-brand{
+    padding: 6px 0px 0px 10px;
+    text-align : center;
+    vertical-align: middle;
+}
+.navbar-inverse .navbar-nav>.active>a, 
+.navbar-inverse .navbar-nav>.active>a:hover, 
+.navbar-inverse .navbar-nav>.active>a:focus{
+    background-color: #fe485c;
+    opacity:0.9;
+}
+
+.navbar-inverse .navbar-toggle,
+.navbar-inverse .navbar-toggle:hover, 
+.navbar-inverse .navbar-toggle:focus{
+    border-color: #fff;
+    background-color: #fe485c;
+}
+
+.navbar-inverse .navbar-collapse{
+    border-color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+    color: white;
+}
+
+.navbar-inverse .navbar-nav>.open>a, 
+.navbar-inverse .navbar-nav>.open>a:hover, 
+.navbar-inverse .navbar-nav>.open>a:focus{
+    color: #fe7b89;
+    background-color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover{
+    color: white;
+    background-color: #fe94a0;
+}
+
+/* Navbar Login */
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    /*background-color:rgba(255,255,255,.9);*/
+    background:white;
+    z-index: 1;
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.9);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+
+#sign{
+    background-color: #fe7b89;
+    border-color: #fe6878;
+}
