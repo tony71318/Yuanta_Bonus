@@ -4,6 +4,7 @@
 	if(isset($_SESSION['login_user'])){
 	header("location: client.php");
 	}
+	# test
 ?>
 
 <!doctype html>
