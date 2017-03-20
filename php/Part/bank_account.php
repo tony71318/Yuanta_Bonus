@@ -27,7 +27,7 @@
             	echo $citi_data[$i]['regist_time'];
             echo '</td>';
             echo '<td class="col-md-2">';
-                echo '<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#account_modal" style="margin-right: 3px"onclick="set_account_modal(this)">交換點數</button>';
+                echo '<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#account_modal" style="margin-right: 3px"onclick="set_account_modal(this)">詳細資料</button>';
                 echo '<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>';
             echo '</td>';
         echo '</tr>';
