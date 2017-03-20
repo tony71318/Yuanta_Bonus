@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include('php/query/bank_data.php');
 ?>
 
 <!doctype html>
@@ -13,14 +14,14 @@
 	<title>元大紅利 | 銀行專區</title>
 
 	<!-- 套用bootstrap -->		<!-- 更改網址來更新css -->
-	<link type="text/css" href="./css/bootstrap.min.css?ver=1" rel="stylesheet" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<!-- 套用自訂css -->
-	<link type="text/css" href="./css/yuanta-sell_style.css?ver=3" rel="stylesheet"/>
+	<link type="text/css" href="./css/bank.css?ver=3" rel="stylesheet"/>
 
 	<!-- jquery -->
-	<script type="text/javascript" src="./dist/jquery-3.1.1.min.js"></script>
-	<!-- 套用bootstrap.js -->	<!-- 一定要擺在jquery之後 -->
-	<script type="text/javascript" src="./dist/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- 套用bootstrap.js --> <!-- 一定要擺在jquery之後 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<!-- 套用 Ethereum 相關 api -->
 	<script type="text/javascript" src="./node_modules/bignumber.js/bignumber.min.js"></script>
 	<script type="text/javascript" src="./dist/web3-light.js"></script>
@@ -291,30 +292,9 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                    <tr>
-	                    	<td>1</td>
-	                        <td><p>F123456789</p></td>
-	                        <td><p>花旗銀行</p></td>
-	                        <td><p>趙振傑</p></td>
-	                        <td><p><span class="label label-success">4235</span></p></td>
-	                        <td><p>2017-03-12</p></td>
-	                        <td class="col-md-2"><p>
-	                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >詳細資料</button>
-	                            <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button>
-	                        </p></td>
-	                    </tr>
-	                    <tr>
-	                    	<td>2</td>
-	                        <td><p>B123456789</p></td>
-	                        <td><p>國泰銀行</p></td>
-	                        <td><p>林書豪</p></td>
-	                        <td><p><span class="label label-danger">0</span></p></td>
-	                        <td><p>2017-03-10</p></td>
-	                        <td class="col-md-2"><p>
-	                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">詳細資料</button>
-	                            <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button>
-	                        </p></td>
-	                    </tr>
+	                    <?php 
+	                		include('php/part/bank_account.php');
+	                	 ?>
 	                </tbody>
 	            </table>
 	        </div>
@@ -394,82 +374,11 @@
 	<!-- 最近交易結束 -->
 
 	<!-- 合作銀行列表開始 -->
-	<div id="coop" class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<h3 class="text-center"><b>合作銀行</b></h3>
-				<hr />
-			</div>
-		</div>
-		<div id="coop-bank" class="row">
-			<div class="col-xs-6 col-sm-2">
-				<div class="thumbnail text-center">
-					<img alt="" src="images/yuanta_logo.png" />
-					<div class="caption">
-						<h3 class="h4">元大銀行</h3>						
-						<p><a href="https://ebank.yuantabank.com.tw/ib/" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-2">
-				<div class="thumbnail text-center">
-					<img alt="" src="images/cathay_logo.png"/>
-					<div class="caption">
-						<h3 class="h4">國泰世華銀行</h3>						
-						<p><a href="https://www.mybank.com.tw/mybank" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-2">
-				<div class="thumbnail text-center">
-					<img alt="" src="images/citi_logo.png" />
-					<div class="caption">
-						<h3 class="h4">花旗銀行</h3>						
-						<p><a href="https://www.citibank.com.tw/" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-2">
-				<div class="thumbnail text-center">
-					<img alt="" src="images/yuanta_logo.png" />
-					<div class="caption">
-						<h3 class="h4">元大銀行</h3>						
-						<p><a href="https://ebank.yuantabank.com.tw/ib/" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-2">
-				<div class="thumbnail text-center">
-					<img alt="" src="images/cathay_logo.png"/>
-					<div class="caption">
-						<h3 class="h4">國泰世華銀行</h3>						
-						<p><a href="https://www.mybank.com.tw/mybank" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-2">
-				<div class="thumbnail text-center">
-					<img alt="" src="images/citi_logo.png" />
-					<div class="caption">
-						<h3 class="h4">花旗銀行</h3>						
-						<p><a href="https://www.citibank.com.tw/" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+		<?php include('php/part/cooperate_banklist.php'); ?>
 	<!-- 合作銀行列表結束 -->
 
 	<!-- 頁尾  -->
-	<footer id="footer" class="container-fluid text-center">
-		<hr/>
-		<a href="#myPage" title="To Top">
-			<span class="glyphicon glyphicon-chevron-up"></span>
-			<div>
-				<label for="To Top">To Top</label>
-			</div>
-		</a>
-	</footer>	
+		<?php include('php/part/footer.php'); ?>	
 	<!-- 頁尾結束  -->
 
 </body>
