@@ -13,14 +13,14 @@
 	<title>元大紅利 | 銀行專區</title>
 
 	<!-- 套用bootstrap -->		<!-- 更改網址來更新css -->
-	<link type="text/css" href="./css/bootstrap.min.css?ver=1" rel="stylesheet" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<!-- 套用自訂css -->
-	<link type="text/css" href="./css/yuanta-sell_style.css?ver=3" rel="stylesheet"/>
+	<link type="text/css" href="./css/bank.css?ver=3" rel="stylesheet"/>
 
 	<!-- jquery -->
-	<script type="text/javascript" src="./dist/jquery-3.1.1.min.js"></script>
-	<!-- 套用bootstrap.js -->	<!-- 一定要擺在jquery之後 -->
-	<script type="text/javascript" src="./dist/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- 套用bootstrap.js --> <!-- 一定要擺在jquery之後 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<!-- 套用 Ethereum 相關 api -->
 	<script type="text/javascript" src="./node_modules/bignumber.js/bignumber.min.js"></script>
 	<script type="text/javascript" src="./dist/web3-light.js"></script>
