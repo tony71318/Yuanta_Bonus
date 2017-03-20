@@ -1,4 +1,5 @@
 ﻿版本備份/
 node_modules/
+package/
 gulpfile.js
 package.json
