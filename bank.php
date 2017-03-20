@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include('php/query/bank_data.php');
 ?>
 
 <!doctype html>
@@ -291,30 +292,9 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                    <tr>
-	                    	<td>1</td>
-	                        <td><p>F123456789</p></td>
-	                        <td><p>花旗銀行</p></td>
-	                        <td><p>趙振傑</p></td>
-	                        <td><p><span class="label label-success">4235</span></p></td>
-	                        <td><p>2017-03-12</p></td>
-	                        <td class="col-md-2"><p>
-	                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" >詳細資料</button>
-	                            <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button>
-	                        </p></td>
-	                    </tr>
-	                    <tr>
-	                    	<td>2</td>
-	                        <td><p>B123456789</p></td>
-	                        <td><p>國泰銀行</p></td>
-	                        <td><p>林書豪</p></td>
-	                        <td><p><span class="label label-danger">0</span></p></td>
-	                        <td><p>2017-03-10</p></td>
-	                        <td class="col-md-2"><p>
-	                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">詳細資料</button>
-	                            <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button>
-	                        </p></td>
-	                    </tr>
+	                    <?php 
+	                		include('php/part/bank_account.php');
+	                	 ?>
 	                </tbody>
 	            </table>
 	        </div>
