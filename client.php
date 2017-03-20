@@ -290,7 +290,7 @@
 	                </thead>
 	                <tbody>
 	                	<?php 
-	                		include('php/part/client_account.php');
+	                		include('php/part/client/client_account.php');
 	                	 ?>
 	                </tbody>
 	            </table>
@@ -309,7 +309,7 @@
 	</div>
 	
 	<!-- popup -->
-		<?php include('php/part/client_popup.php'); ?>
+		<?php include('php/part/client/client_account_popup.php'); ?>
 	<!-- popup 結束-->
 
 	<!-- 帳戶管理結束 -->

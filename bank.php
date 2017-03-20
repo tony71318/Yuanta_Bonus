@@ -293,7 +293,7 @@
 	                </thead>
 	                <tbody>
 	                    <?php 
-	                		include('php/part/bank_account.php');
+	                		include('php/part/bank/bank_account.php');
 	                	 ?>
 	                </tbody>
 	            </table>
