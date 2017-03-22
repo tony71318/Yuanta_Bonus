@@ -4,3 +4,4 @@ package/
 minjs/
 gulpfile.js
 package.json
+*.db
