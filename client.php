@@ -196,7 +196,7 @@
 		  	<li><a href="#member">個人</a></l>
 		  	<li><a href="#div_account">帳戶</a></li>
         	<li><a href="#div_history">紀錄</a></li>
-        	<li><a href="http://140.113.65.49/yuanta_sell.php">銀行端</a></li>
+        	<li><a href="http://140.113.65.49/bank.php">銀行端</a></li>
 			<li>
 				<a href="php/account/logout.php"><span class="glyphicon glyphicon-log-out"></span> 
 					登出

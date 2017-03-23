@@ -182,7 +182,7 @@
 		  <ul class="nav navbar-nav navbar-right">
 		  	<li><a href="#intro">簡介</a></li>
         	<li><a href="#bonus">紅利</a></li>
-        	<li><a href="http://140.113.65.49/yuanta_sell.php">銀行端</a></li>
+        	<li><a href="http://140.113.65.49/bank.php">銀行端</a></li>
 			<li>
 				<a href="php/account/regist.php">
 					<span class="glyphicon glyphicon-user"></span>
