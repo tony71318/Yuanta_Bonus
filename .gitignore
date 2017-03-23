@@ -1,7 +1,0 @@
-﻿版本備份/
-node_modules/
-package/
-minjs/
-gulpfile.js
-package.json
-*.db
