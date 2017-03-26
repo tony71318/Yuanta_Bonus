@@ -1,0 +1,247 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>元大概念購物網站</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+		<meta charset="UTF-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!----//webfonts---->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		    <!-- <script src="js/bootstrap.js"></script> -->
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	</head>
+	<body>
+		<!---start-wrap---->
+		
+		<!-- 導覽列 -->
+		<nav class="navbar navbar-inverse  navbar-fixed-top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>                        
+			  </button>
+			  <a class="navbar-brand" href="#myPage"><img src="../images/logo.png" width="150" alt=""></a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+			  <ul class="nav navbar-nav navbar-right">
+			  	<li><a href="#intro">簡介</a></li>
+	        	<li><a href="#bonus">紅利</a></li>
+	        	<li><a href="http://140.113.65.49/index.php">用戶端</a></li>
+	        	<li><a href="http://140.113.65.49/bank.php">銀行端</a></li>
+				<li>
+					<a href="../php/account/regist.php">
+						<span class="glyphicon glyphicon-user"></span>
+							註冊
+					</a>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<span class="glyphicon glyphicon-log-in"></span> 
+							登入
+						<span class="caret"></span>
+					</a>
+					<ul id="login-dp" class="dropdown-menu dropdown-menu-right">
+						<li>
+							 <div class="row">
+									<div class="col-md-12">
+										 <form class="form" role="form" method="post" action="php/account/login.php" accept-charset="UTF-8" id="login-nav">
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputEmail2">Username</label>
+													 <input type="username" name="username" class="form-control" id="exampleInputEmail2" placeholder="Username" required>
+												</div>
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputPassword2">Password</label>
+													 <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+												</div>
+												<div class="form-group">
+													 <button type="submit" name="submit" id="sign" class="btn btn-primary btn-block">登入</button>
+												</div>
+												<div class="checkbox">
+													 <label>
+													 	<input type="checkbox"> 保持登入
+													 </label>
+												</div>
+										 </form>
+									</div>
+							 </div>
+						</li>
+					</ul>
+				</li>
+			  </ul>
+			</div>
+		  </div>
+		</nav>
+		<!-- 導覽列結束 -->
+
+		<!-- start-content-->
+		<div class="content details-page">
+			<!---start-product-details-->
+			<div class="product-details" style="padding-bottom: 0">
+				<div class="wrap">
+					<ul class="product-head">
+						<li><a href="#">首頁</a> <span>::</span></li>
+						<li class="active-page"><a href="#">產品頁面</a></li>
+						<div class="clear"> </div>
+					</ul>
+				<!---details-product-slider-->
+				<!-- Include the Etalage files -->
+					<link rel="stylesheet" href="css/etalage.css">
+					<script src="js/jquery.etalage.min.js"></script>
+				<!-- Include the Etalage files -->
+				<script>
+						jQuery(document).ready(function($){
+			
+							$('#etalage').etalage({
+								thumb_image_width: 300,
+								thumb_image_height: 400,
+								source_image_width: 900,
+								source_image_height: 1000,
+								show_hint: true,
+								click_callback: function(image_anchor, instance_id){
+									alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+								}
+							});
+							// This is for the dropdown list example:
+							$('.dropdownlist').change(function(){
+								etalage_show( $(this).find('option:selected').attr('class') );
+							});
+
+					});
+				</script>
+				<!--//details-product-slider-->
+				<div class="details-left">
+					<div class="details-left-slider">
+						<ul id="etalage">
+							<li>
+								<a href="optionallink.html">
+									<img class="etalage_thumb_image" src="images/product-slide/image1_thumb.jpg" />
+									<img class="etalage_source_image" src="images/product-slide/image1_large.jpg" />
+								</a>
+							</li>
+							<li>
+								<img class="etalage_thumb_image" src="images/product-slide/image2_thumb.jpg" />
+								<img class="etalage_source_image" src="images/product-slide/image2_large.jpg" />
+							</li>
+							<li>
+								<img class="etalage_thumb_image" src="images/product-slide/image3_thumb.jpg" />
+								<img class="etalage_source_image" src="images/product-slide/image3_large.jpg" />
+							</li>
+							<li>
+								<img class="etalage_thumb_image" src="images/product-slide/image4_thumb.jpg" />
+								<img class="etalage_source_image" src="images/product-slide/image4_large.jpg" />
+							</li>
+							<li>
+								<img class="etalage_thumb_image" src="images/product-slide/image5_thumb.jpg" />
+								<img class="etalage_source_image" src="images/product-slide/image5_large.jpg" />
+							</li>
+							<li>
+								<img class="etalage_thumb_image" src="images/product-slide/image6_thumb.jpg" />
+								<img class="etalage_source_image" src="images/product-slide/image6_large.jpg" />
+							</li>
+							<li>
+								<img class="etalage_thumb_image" src="images/product-slide/image7_thumb.jpg" />
+								<img class="etalage_source_image" src="images/product-slide/image7_large.jpg" />
+							</li>
+						</ul>
+					</div>
+					<div class="details-left-info">
+						<div class="details-right-head">
+						<h1>Puma Evo Speed</h1>
+						<ul class="pro-rate">
+							<li><a class="product-rate" href="#"> <label> </label></a> <span> </span></li>
+							<li><a href="#">3 則回覆 新增 回覆</a></li>
+						</ul>
+						<p class="product-detail-info">採用流線外觀與PUMA尖端球鞋科技打造的evoSPEED 不僅輕盈的身姿，還採用了廣受好評的PUMA Tricks系列戰靴的鴛鴦配色方案，形成過目不忘的獨特風格。</p>
+						<a class="learn-more" href="#"><h3>更多資訊</h3></a>
+						<div class="product-more-details">
+							<ul class="price-avl">
+								<li class="price"><span>$4850</span><label>$3999</label></li>
+								<li class="stock"><i>有庫存</i></li>
+								<div class="clear"> </div>
+							</ul>
+							<ul class="product-colors">
+								<h3>顏色 :</h3>
+								<li><a class="color1" href="#"><span> </span></a></li>
+								<li><a class="color2" href="#"><span> </span></a></li>
+								<li><a class="color3" href="#"><span> </span></a></li>
+								<li><a class="color4" href="#"><span> </span></a></li>
+								<li><a class="color5" href="#"><span> </span></a></li>
+								<li><a class="color6" href="#"><span> </span></a></li>
+								<li><a class="color7" href="#"><span> </span></a></li>
+								<li><a class="color8" href="#"><span> </span></a></li>
+								<div class="clear"> </div>
+							</ul>
+							<ul class="prosuct-qty">
+								<span>數量:</span>
+								<select>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+									<option>6</option>
+								</select>
+							</ul>
+							<input type="button" value="購買" />
+						</div>
+					</div>
+					</div>
+					<div class="clear"> </div>
+				</div>
+				<div class="details-right">
+				</div>
+				<div class="clear"> </div>
+			</div>
+
+			<!---start-footer---->
+			<div class="footer" style="margin-top: 200px">
+				<div class="wrap">
+					<div class="footer-left">
+						<ul>
+							<li><a href="#">United Kingdom</a> <span> </span></li>
+							<li><a href="#">Terms of Use</a> <span> </span></li>
+							<li><a href="#">Nike Inc.</a> <span> </span></li>
+							<li><a href="#">Launch Calendar</a> <span> </span></li>
+							<li><a href="#">Privacy & Cookie Policy</a> <span> </span></li>
+							<li><a href="#">Cookie Settings</a></li>
+							<div class="clear"> </div>
+						</ul>
+					</div>
+					<div class="footer-right">
+						<p>Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+						<script type="text/javascript">
+							$(document).ready(function() {
+								/*
+								var defaults = {
+						  			containerID: 'toTop', // fading element id
+									containerHoverID: 'toTopHover', // fading element hover id
+									scrollSpeed: 1200,
+									easingType: 'linear' 
+						 		};
+								*/
+								
+								$().UItoTop({ easingType: 'easeOutQuart' });
+								
+							});
+						</script>
+				    <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"> </span></a>
+					</div>
+					<div class="clear"> </div>
+				</div>
+			</div>
+			<!---//End-footer---->
+		<!--//End-wrap-->
+	</body>
+</html>
+
