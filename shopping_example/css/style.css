@@ -1526,8 +1526,8 @@ h2.resp-accordion:first-child {
 	border-top: none;
 }
 .product-more-details input[type="button"]:hover{
-	background: #1C1C20;
-	border-bottom: 4px solid #333;
+	background: #fe94a0;
+	border-bottom: 4px solid #fff;
 }
 .product-share li{
 	display:inline-block;
