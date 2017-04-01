@@ -4,8 +4,8 @@
 	include('php/query/client_data.php');
 	//echo("<script>console.log('PHP: ".$rows."');</script>")
 
-	//yuanta 0xEC013a9fC42aDADd47aA5B50fe6dac4c1d1662b1	
-	//citi 0x5ba8Edbd3e368407C4C249838e2A5eFDB949B146
+	//yuanta 0x2D281b1eB066EB14Dc769Ec2fcfB2819c8F046Ef	
+	//citi 0x6D623fe432B1e48d57b2A804cee71f1d4eE4b2A1
 	//cathay 0x701c97Fb87fBaC9729897A9b6E3Df7dFd6CB68be
 ?>
 
@@ -29,7 +29,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<!-- 套用 Ethereum 相關 api -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/4.0.0/bignumber.min.js"></script>
-	<script type="text/javascript" src="./dist/web3-light.js"></script>
+	<script type="text/javascript" src="./dist/web3.js"></script>
 	
 	<!-- my contract -->
 	<script src="js/contract.js"></script>
@@ -45,7 +45,11 @@
 <script>	
 
 	window.onload = function(){
-		var event = myContractInstance.Transfer({},{fromBlock: 50000, toBlock: 'latest'} , function(error, result){
+		// var event = myContractInstance.Transfer({},{fromBlock: 50000, toBlock: 'latest'} , function(error, result){
+		//   if (!error)
+		//     console.log(result);
+		// });
+		var event = myContractInstance.Exchange({},{fromBlock: 50000, toBlock: 'latest'} , function(error, result){
 		  if (!error)
 		    console.log(result);
 		});
@@ -59,13 +63,6 @@
 		var from_Password = 'tony70431';
 		
 		var from_bank_value = document.getElementById("amount").value;
-
-		if (from_bank_value == '') {
-			$.LoadingOverlay("hide");
-			alert('please input a value');
-			return;
-		}
-
 		var from_bank_rate = 0;
 
 		var to_bank = exchange_form.to_bank.value;
@@ -83,38 +80,32 @@
 
 				var value = from_bank_value/from_bank_rate;
 
-				console.log("address:", fromAddress, to_bank_address, "value:" , value);
+				var customer = 'A123456789';
+				console.log("customer:", customer, "address:", fromAddress, to_bank_address, "value:" , value);
 		
-				// web3.personal.unlockAccount(fromAddress, from_Password, 300);	//解鎖要執行 function 的 account
+				web3.personal.unlockAccount(fromAddress, from_Password, 300);	//解鎖要執行 function 的 account
 				
-				// var res = myContractInstance.transfer(	// transfer 是 contract 裡 的一個 function
-				// 		ToAddress,	//input
-				// 		value,	//input
-				// 		{
-				// 			from: fromAddress,	//從哪個ethereum帳戶執行
-				// 			'gas': myContractInstance.transfer.estimateGas() *5 //執行function所需的gas (發現*5比較不會有錯誤)
-				// 		},
-				// 		function(err, result) {	//callback 的 function
-				// 			if (!err){
-				// 				console.log(result);
-				// 				f_prompt(result);	//瀏覽器 會 顯示 交易成功視窗
-				// 			}
-				// 			else {
-				// 				console.log(err);
-				// 				alert(err);
-				// 			}
-				// 		}
-				// 	);
+				
+				var res = myContractInstance.transfer(	// transfer 是 contract 裡 的一個 function
+						customer.toString(),				/////////////////////////FFFFFFFFFFFFUUUUUUUUUUUUUUUUCCCCCCCCCCCKKKKKKKKKKKKKK  String Length
+						to_bank_address,	//input
+						value,	//input
+						{
+							from: fromAddress,	//從哪個ethereum帳戶執行
+							'gas': myContractInstance.transfer.estimateGas() *5 //執行function所需的gas (發現*5比較不會有錯誤)
+						},
+						function(err, result) {	//callback 的 function
+							if (!err){
+								console.log(result);
+								f_prompt(result);	//瀏覽器 會 顯示 交易成功視窗
+							}
+							else {
+								console.log(err);
+								alert(err);
+							}
+						}
+					);
 
-				web3.eth.filter('latest', function(error, result){
-				  if (!error)
-				    console.log(result);
-				});
-
-				var filter = web3.eth.filter({fromBlock:0, toBlock: 'latest', address: myContractAddress, 'topics':[web3.sha3('Transfer(string,uint256,string,string,uint256)')]});
-				filter.watch(function(error, result) {
-				   console.log(result);
-				})
 
 				alert('Success');
 				$.LoadingOverlay("hide");
@@ -158,6 +149,9 @@
 
 	function set_account_modal(element){
 
+		//clear previous input
+		document.getElementById("amount").value = ""; 
+
 		var table = document.getElementById("account_table");
 
 		// set from_bank's value
@@ -183,18 +177,6 @@
 		    }
 		    modal_select.options[i-1-count] = new Option(option_text, option_text);
 		}
-
-		// myContractInstance.Transfer({address : '0x6D623fe432B1e48d57b2A804cee71f1d4eE4b2A1'}, { fromBlock: 0, toBlock: 'latest' }).get((error, eventResult) => {
-		//   if (error)
-		//     console.log('Error in myEvent event handler: ' + error);
-		//   else
-		//     console.log('myEvent: ' + JSON.stringify(eventResult.args));
-		// });
-
-		myContractInstance.Transfer().watch(function(error, result){
-			console.log(JSON.stringify(result.args));
-		});
-
 	}
 	
 </script>
