@@ -3,6 +3,10 @@
 	include('php/account/session.php');
 	include('php/query/client_data.php');
 	//echo("<script>console.log('PHP: ".$rows."');</script>")
+
+	//yuanta 0xEC013a9fC42aDADd47aA5B50fe6dac4c1d1662b1	
+	//citi 0x5ba8Edbd3e368407C4C249838e2A5eFDB949B146
+	//cathay 0x701c97Fb87fBaC9729897A9b6E3Df7dFd6CB68be
 ?>
 
 <!doctype html>
@@ -40,7 +44,12 @@
 
 <script>	
 
-
+	window.onload = function(){
+		var event = myContractInstance.Transfer({},{fromBlock: 50000, toBlock: 'latest'} , function(error, result){
+		  if (!error)
+		    console.log(result);
+		});
+	};
 
 	function sendTransaction(){		// 在銀行之間轉移元大幣
 	
@@ -96,6 +105,17 @@
 				// 			}
 				// 		}
 				// 	);
+
+				web3.eth.filter('latest', function(error, result){
+				  if (!error)
+				    console.log(result);
+				});
+
+				var filter = web3.eth.filter({fromBlock:0, toBlock: 'latest', address: myContractAddress, 'topics':[web3.sha3('Transfer(string,uint256,string,string,uint256)')]});
+				filter.watch(function(error, result) {
+				   console.log(result);
+				})
+
 				alert('Success');
 				$.LoadingOverlay("hide");
 			},
@@ -309,8 +329,59 @@
 		<hr>
 	</div>
 	
-	<!-- popup -->
-		<?php include('php/part/client/client_account_popup.php'); ?>
+	<!-- popup -->	
+	<div class="container">
+	  <!-- Account Modal -->
+	  <div class="modal fade" id="account_modal" role="dialog">
+	    <div class="modal-dialog">
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">交換點數</h4>
+	        </div>
+	        <form class="form-horizontal" method="post" id="exchange_form" name="exchange_form" action="javascript:sendTransaction();">
+		        <div class="modal-body">
+					<div class="form-group">
+						<label for="bank" class="col-sm-3 control-label">轉出帳戶:</label>
+						<div class="col-sm-9">
+							<p id="from_bank" class="p_form"></p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="number" class="col-sm-3 control-label">欲換點數:</label>
+						<div class="col-sm-9">
+					    	<input type="number" id="amount" placeholder="輸入點數" class="form-control" onkeyup="calculate()" required="">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="bank" class="col-sm-3 control-label">轉入帳戶:</label>
+						<div class="col-sm-9">
+							<select id="to_bank" class="form-control">
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="number" class="col-sm-3 control-label">可得點數:</label>
+						<div class="col-sm-9">
+					    	<p id="get_amount" class="p_form">0點</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="number" class="col-sm-3 control-label">手續費:</label>
+						<div class="col-sm-9">
+					    	<p id="fee" class="p_form">0點</p>
+						</div>
+					</div>
+		        </div>
+		        <div class="modal-footer">
+		        	 <button type="submit" class="btn btn-primary" id="sign">確認交換</button>
+		        </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	<!-- popup 結束-->
 
 	<!-- 帳戶管理結束 -->
