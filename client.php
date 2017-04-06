@@ -87,7 +87,7 @@
 				
 				
 				var res = myContractInstance.transfer(	// transfer 是 contract 裡 的一個 function
-						customer.toString(),				/////////////////////////FFFFFFFFFFFFUUUUUUUUUUUUUUUUCCCCCCCCCCCKKKKKKKKKKKKKK  String Length
+						customer,			//input    String Length Issue
 						to_bank_address,	//input
 						value,	//input
 						{
