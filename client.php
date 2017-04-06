@@ -2,6 +2,7 @@
 <?php
 	include('php/account/session.php');
 	include('php/query/client_data.php');
+	echo '<script>var user_id = '.json_encode($_SESSION['user_id']).';</script>';
 	//echo("<script>console.log('PHP: ".$rows."');</script>")
 
 	//yuanta 0x2D281b1eB066EB14Dc769Ec2fcfB2819c8F046Ef	
@@ -73,21 +74,21 @@
 			data : {to_bank: to_bank},
 			url  : 'php/query/get_bank_address.php',              // <=== CALL THE PHP FUNCTION HERE.
 			dataType: 'json',
-			success: function ( data ) {
-				//console.log(data['cathay']);               // <=== VALUE RETURNED FROM FUNCTION.
+			success: function ( data ) {				// <=== VALUE RETURNED FROM FUNCTION.           
 				to_bank_address = data['address'];
 				from_bank_rate = data['rate'];
 
 				var value = from_bank_value/from_bank_rate;
 
-				var customer = 'A123456789';
-				console.log("customer:", customer, "address:", fromAddress, to_bank_address, "value:" , value);
+				console.log("user_id:", user_id, "address:", fromAddress, to_bank_address, "value:" , value);
+				user_id = web3.toHex({user_id: user_id});
+				console.log("user_id's hex value:", user_id);
 		
 				web3.personal.unlockAccount(fromAddress, from_Password, 300);	//解鎖要執行 function 的 account
 				
 				
 				var res = myContractInstance.transfer(	// transfer 是 contract 裡 的一個 function
-						customer,			//input    String Length Issue
+						user_id,			//input    String Length Issue
 						to_bank_address,	//input
 						value,	//input
 						{
