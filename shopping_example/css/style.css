@@ -29,7 +29,7 @@ body{
 	background-attachment: fixed;
 	
 	font-family: 'Noto Sans TC', sans-serif;
-    font-size: 15px;
+    /*font-size: 15px;*/
 }
 
 /* 由於 navbar fixed top */
@@ -41,7 +41,7 @@ hr {
 
 /* a */
 a{
-	font-size:1.4em;
+	/*font-size:1.4em;*/
 /*	font-weight:bold;*/
 }
 
