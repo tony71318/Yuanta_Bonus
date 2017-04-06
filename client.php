@@ -54,6 +54,7 @@
 		  if (!error)
 		    console.log(result);
 		});
+
 	};
 
 	function sendTransaction(){		// 在銀行之間轉移元大幣
@@ -81,13 +82,10 @@
 				var value = from_bank_value/from_bank_rate;
 
 				console.log("user_id:", user_id, "address:", fromAddress, to_bank_address, "value:" , value);
-				user_id = web3.toHex({user_id: user_id});
+				user_id = web3.toHex({user_id: user_id});	//	String要先轉成hex value
 				console.log("user_id's hex value:", user_id);
 		
 				web3.personal.unlockAccount(fromAddress, from_Password, 300);	//解鎖要執行 function 的 account
-				
-				console.log("fuck");
-				console.log("estimateGas: " + myContractInstance.transfer.estimateGas());
 
 				var res = myContractInstance.transfer(	// transfer 是 contract 裡 的一個 function
 						user_id,			//input    String Length Issue
@@ -95,13 +93,13 @@
 						value,	//input
 						{
 							from: fromAddress,	//從哪個ethereum帳戶執行
-							//'gas': myContractInstance.transfer.estimateGas() *100 //執行function所需的gas (發現*5比較不會有錯誤)
-							'gas': 140349
+							//'gas': myContractInstance.transfer.estimateGas() *100 //執行function所需的gas (發現*5比較不會有錯誤)	//目前似乎壞掉惹
+							'gas': 140349	//從Mist裡面看的
 						},
 						function(err, result) {	//callback 的 function
 							if (!err){
-								console.log(result);
-								f_prompt(result);	//瀏覽器 會 顯示 交易成功視窗
+								console.log("Transaction_Hash: " + result);
+								bootbox.alert("Transaction_Hash: " + result);	//瀏覽器 會 顯示 交易成功視窗
 							}
 							else {
 								console.log(err);
@@ -110,9 +108,8 @@
 						}
 					);
 
-
-				alert('Success');
-				$.LoadingOverlay("hide");
+				$('#account_modal').modal('hide');	//隱藏交換點數視窗
+				$.LoadingOverlay("hide");	//隱藏 loading 動畫
 			},
 			error: function ( xhr ) {
 				console.log(xhr);
