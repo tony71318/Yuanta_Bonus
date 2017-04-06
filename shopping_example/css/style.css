@@ -51,10 +51,6 @@ a{
 }
 
 
-
-
-/* 由於 navbar fixed top */
-body { padding-top: 70px; }
 /* Navbar */
 .navbar-inverse{
 	background-color: #3c7cff;
@@ -1599,7 +1595,7 @@ h2.resp-accordion:first-child {
 .details-left{
 	float:left;
 	width:80%;
-	background-color: #e3f1fd
+	/*background-color: #e3f1fd*/
 }
 
 /*----*/
