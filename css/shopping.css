@@ -1,7 +1,7 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
 
 body{
-	background:url(../images/bg_bank.jpg) no-repeat center top;
+	background:url(../images/bg_shopping.jpg) no-repeat center top;
 	background-size: cover;
 	background-attachment: fixed;
 	
@@ -29,7 +29,7 @@ a{
 
 /* Navbar */
 .navbar-inverse{
-	background-color: #ffd06f;
+	background-color: #3c7cff;
 	/*opacity:0.9;*/
 	border:0;
 	border-radius:0;
@@ -44,7 +44,7 @@ a.navbar-brand{
 .navbar-inverse .navbar-nav>.active>a, 
 .navbar-inverse .navbar-nav>.active>a:hover, 
 .navbar-inverse .navbar-nav>.active>a:focus{
-	background-color: #fe485c;
+	background-color: #236aff;
 	opacity:0.9;
 }
 
@@ -52,7 +52,7 @@ a.navbar-brand{
 .navbar-inverse .navbar-toggle:hover, 
 .navbar-inverse .navbar-toggle:focus{
 	border-color: #fff;
-	background-color: #fe485c;
+	background-color: #236aff;
 }
 
 .navbar-inverse .navbar-collapse{
@@ -66,13 +66,13 @@ a.navbar-brand{
 .navbar-inverse .navbar-nav>.open>a, 
 .navbar-inverse .navbar-nav>.open>a:hover, 
 .navbar-inverse .navbar-nav>.open>a:focus{
-	color: #ffd06f;
+	color: #3c7cff;
 	background-color: white;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover{
 	color: white;
-	background-color: #ffd98b;
+	background-color: #6f9eff;
 }
 
 /* Navbar Login */
@@ -95,35 +95,7 @@ a.navbar-brand{
 }
 
 #sign{
-	background-color: #ffd06f;
-	border-color: #ffbf3c;
+	background-color: #3c7cff;
+	border-color: #236aff;
 }
 
-/*會員資料*/
-#member{
-	background-color: rgba(255, 255, 255, 0.7);
-	box-shadow: rgba(0,0,0,0.8) 0 8px 33px 0;
-}
-
-/*帳戶管理*/
-#div_account{
-	background-color: rgba(255, 255, 255, 0.4);
-	box-shadow: rgba(0,0,0,0.8) 3px 3px 10px 0;
-}
-
-/*最近交易*/
-#div_history{
-	background-color: rgba(255, 255, 255, 0.4);
-	box-shadow: rgba(0,0,0,0.8) 3px 3px 10px 0;
-}
-
-/*合作銀行列表開始*/
-#coop-bank .thumbnail{
-	background-color: rgba(255, 255, 255, 0.4);
-	box-shadow: rgba(0,0,0,0.8) 3px 3px 10px 0;
-}
-
-/* 頁尾 */
-#footer{
-	margin: 30px 0px 20px 0px;
-}

@@ -161,35 +161,23 @@
 		  <ul class="nav navbar-nav navbar-right">
 		  	<!-- <li><a href="#intro">簡介</a></li>
         	<li><a href="#bonus">紅利</a></li> -->
-        	<li><a href="http://140.113.65.49/shopping_example/details.html">購物</a></li>
-        	<li><a href="http://140.113.65.49/index.php">用戶端</a></li>
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        	<li>
+        		<a href="http://140.113.65.49/shopping_example/details.html">
+        			<i class="glyphicon glyphicon-shopping-cart"></i>
+        				購物
+        		</a>
+        	</li>
+        	<li>
+        		<a href="http://140.113.65.49/index.php">
+		        	<i class="glyphicon glyphicon-home"></i>
+		        		用戶端
+		        </a>
+		    </li>
+        	<li>
+				<a href="php/account/regist.php">
 					<span class="glyphicon glyphicon-user"></span>
 						註冊
-					<span class="caret"></span>
 				</a>
-				<ul id="login-dp" class="dropdown-menu dropdown-menu-right">
-					<li>
-						 <div class="row">
-								<div class="col-md-12">
-									 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-											<div class="form-group">
-												 <label class="sr-only" for="exampleInputEmail2">Email address</label>
-												 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-											</div>
-											<div class="form-group">
-												 <label class="sr-only" for="exampleInputPassword2">Password</label>
-												 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-											</div>
-											<div class="form-group">
-												 <button type="submit" id="sign" class="btn btn-primary btn-block">註冊</button>
-											</div>
-									 </form>
-								</div>
-						 </div>
-					</li>
-				</ul>
 			</li>
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">

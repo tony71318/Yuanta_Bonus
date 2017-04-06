@@ -21,18 +21,39 @@ nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
+
+
 body{
-	font-family: 'Open Sans', sans-serif;
-	background:#FFF;
+	background:url(../images/bg_shopping.jpg) no-repeat center top;
+	background-size: cover;
+	background-attachment: fixed;
+	
+	font-family: 'Noto Sans TC', sans-serif;
+    /*font-size: 15px;*/
 }
-
-
 
 /* 由於 navbar fixed top */
 body { padding-top: 70px; }
+
+hr {
+	border-top: 2px solid #eee;
+}
+
+/* a */
+a{
+	/*font-size:1.4em;*/
+/*	font-weight:bold;*/
+}
+
+.p_form{
+	padding-top: 7px; 
+	margin: 0;
+}
+
+
 /* Navbar */
 .navbar-inverse{
-	background-color: #fe7b89;
+	background-color: #3c7cff;
 	/*opacity:0.9;*/
 	border:0;
 	border-radius:0;
@@ -47,7 +68,7 @@ a.navbar-brand{
 .navbar-inverse .navbar-nav>.active>a, 
 .navbar-inverse .navbar-nav>.active>a:hover, 
 .navbar-inverse .navbar-nav>.active>a:focus{
-	background-color: #fe485c;
+	background-color: #236aff;
 	opacity:0.9;
 }
 
@@ -55,7 +76,7 @@ a.navbar-brand{
 .navbar-inverse .navbar-toggle:hover, 
 .navbar-inverse .navbar-toggle:focus{
 	border-color: #fff;
-	background-color: #fe485c;
+	background-color: #236aff;
 }
 
 .navbar-inverse .navbar-collapse{
@@ -69,14 +90,15 @@ a.navbar-brand{
 .navbar-inverse .navbar-nav>.open>a, 
 .navbar-inverse .navbar-nav>.open>a:hover, 
 .navbar-inverse .navbar-nav>.open>a:focus{
-	color: #fe7b89;
+	color: #3c7cff;
 	background-color: white;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover{
 	color: white;
-	background-color: #fe94a0;
+	background-color: #6f9eff;
 }
+
 
 /* Navbar Login */
 #login-dp{
@@ -98,10 +120,9 @@ a.navbar-brand{
 }
 
 #sign{
-	background-color: #fe7b89;
-	border-color: #fe6878;
+	background-color: #3c7cff;
+	border-color: #236aff;
 }
-
 
 
 
@@ -229,7 +250,7 @@ a.navbar-brand{
 	border-right: none;
 	border-left: none;
 	border-top: none;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	outline: none;
 	padding: 0.8em 0;
 	color:#A5A5A5;
@@ -637,7 +658,7 @@ input[type=checkbox].css-checkbox15:checked + label i.css-label15 {
 }
 /*---start-footer----*/
 .footer{
-	background: #fe7b89;
+	background: #3c7cff;
 	padding: 0.3em 0;
 }
 .footer-left{
@@ -967,7 +988,7 @@ h2.resp-accordion:first-child {
 	width: 50px;
 	border: 1px solid #eee;
 	padding: 0.2em;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	outline: none;
 	margin-left: 0.5em;
 	cursor:pointer;
@@ -1122,7 +1143,7 @@ h2.resp-accordion:first-child {
 	-moz-transition: 0.5s all;
 	-o-transition: 0.5s all;
 	display: inline-block;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	cursor: pointer;
 	outline: none;
 	text-transform: uppercase;
@@ -1165,7 +1186,7 @@ h2.resp-accordion:first-child {
 	width: 96%;
 	font-size: 1em;
 	padding: 0.5em;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 .news-letter{
 	color: #08080B;
@@ -1255,7 +1276,7 @@ h2.resp-accordion:first-child {
 	-moz-transition: 0.5s all;
 	-o-transition: 0.5s all;
 	display: inline-block;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	cursor: pointer;
 	outline: none;
 	text-transform: uppercase;
@@ -1272,6 +1293,7 @@ h2.resp-accordion:first-child {
 /*-----start-details-page----*/
 .product-details{
 	padding-bottom:3em;
+	background: e3f1fd;
 }
 .details-page{
 	padding:0;
@@ -1394,7 +1416,7 @@ h2.resp-accordion:first-child {
 }
 .details-left-info{
 	float: left;
-	width: 58%;
+	width: 60%;
 }
 .pro-rate li{
 	display:inline-block;
@@ -1489,7 +1511,7 @@ h2.resp-accordion:first-child {
 	display:inline-block;
 }
 .prosuct-qty select{
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	border: 1px solid #eee;
 	padding: 0.5em;
 	font-size: 1em;
@@ -1497,7 +1519,7 @@ h2.resp-accordion:first-child {
 }
 .prosuct-qty option{
 	border:1px solid #EEE;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 .prosuct-qty{
 	margin-bottom:1.5em;
@@ -1517,7 +1539,7 @@ h2.resp-accordion:first-child {
 	-moz-transition: 0.5s all;
 	-o-transition: 0.5s all;
 	display: inline-block;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	cursor: pointer;
 	outline: none;
 	text-transform: uppercase;
@@ -1573,40 +1595,9 @@ h2.resp-accordion:first-child {
 .details-left{
 	float:left;
 	width:80%;
+	/*background-color: #e3f1fd*/
 }
-.details-right{
-	float: right;
-	width: 19%;
-	background: url(../images/add.jpg) no-repeat 0px 0px;
-	min-height: 600px;
-	border-left: 1px solid #eee;
-	text-align: center;
-}
-.details-right a{
-	background: #E45D5D;
-	color: #FFF;
-	font-size: 0.8em;
-	padding: 0.7em 1.2em;
-	border-radius: 5px;
-	border-bottom: 4px solid #B93838;
-	transition: 0.5s all;
-	-webkit-transition: 0.5s all;
-	-moz-transition: 0.5s all;
-	-o-transition: 0.5s all;
-	display: inline-block;
-	font-family: 'Open Sans', sans-serif;
-	cursor: pointer;
-	outline: none;
-	text-transform: uppercase;
-	border-right: none;
-	border-left: none;
-	border-top: none;
-	margin-top: 400px;
-}
-.details-right a:hover{
-	background: #1C1C20;
-	border-bottom: 4px solid #333;
-}
+
 /*----*/
 .product-reviwes{
 	margin-top:2em;
@@ -1630,7 +1621,7 @@ h2.resp-accordion:first-child {
 	width: 35%;
 	font-size: 1em;
 	padding: 0.5em;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 .vertical-tabs form input[type="submit"] {
 	background: #E45D5D;
@@ -1644,7 +1635,7 @@ h2.resp-accordion:first-child {
 	-moz-transition: 0.5s all;
 	-o-transition: 0.5s all;
 	display: inline-block;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	cursor: pointer;
 	outline: none;
 	text-transform: uppercase;
@@ -1770,7 +1761,7 @@ h2.resp-accordion:first-child {
 	-moz-transition: 0.5s all;
 	-o-transition: 0.5s all;
 	display: block;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	cursor: pointer;
 	outline: none;
 	text-transform: uppercase;
@@ -1834,7 +1825,7 @@ h2.resp-accordion:first-child {
 /*----*/
 /*  Contact Form  */
 .contact form{
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 .map{
 	margin-bottom:30px;
@@ -1851,7 +1842,7 @@ h2.resp-accordion:first-child {
 	line-height: 1.8em;
 	font-size: 0.85em;
 	margin-bottom: 5px;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 span.mail a {
 	color:#E45D5D;
@@ -1862,7 +1853,7 @@ span.mail a:hover{
 .contact-to input[type="text"] {
 	padding: 12px 10px;
 	width: 30.66%;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	margin: 12px 0;
 	border: 1px solid rgba(192, 192, 192, 0.61);
 	color: #626262;
@@ -1892,7 +1883,7 @@ span.mail a:hover{
 	margin: 12px 0;
 	border: 1px solid rgba(192, 192, 192, 0.61);
 	color: #626262;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	outline: none;
 	margin-bottom: 25px;
 	height: 100px;
@@ -1939,7 +1930,7 @@ span.mail a:hover{
 	border-bottom: 4px solid #B93838;
 	outline: none;
 	cursor: pointer;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 .contact-form input[type="submit"]:hover{
 	background: #1C1C20;
@@ -2067,9 +2058,7 @@ span.mail a:hover{
 		float:none;
 		clear: both;
 	}
-	.details-right {
-		display:none;
-	}
+
 	.contact-to input[type="text"]:nth-child(2), .contact-to input[type="text"]:nth-child(3) {
 		margin-left: 0px;
 	}
@@ -2198,9 +2187,7 @@ span.mail a:hover{
 		float:none;
 		clear: both;
 	}
-	.details-right {
-		display:none;
-	}
+
 	.contact-to input[type="text"]:nth-child(2), .contact-to input[type="text"]:nth-child(3) {
 		margin-left: 0px;
 	}
@@ -2358,9 +2345,7 @@ span.mail a:hover{
 		float:none;
 		clear: both;
 	}
-	.details-right {
-		display:none;
-	}
+
 	.contact-to input[type="text"]:nth-child(2), .contact-to input[type="text"]:nth-child(3) {
 		margin-left: 0px;
 	}
@@ -2586,9 +2571,7 @@ span.mail a:hover{
 		float:none;
 		clear: both;
 	}
-	.details-right {
-		display:none;
-	}
+
 	.contact-to input[type="text"]:nth-child(2), .contact-to input[type="text"]:nth-child(3) {
 		margin-left: 0px;
 	}
