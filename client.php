@@ -1,15 +1,4 @@
 
-<?php
-	include('php/account/session.php');
-	include('php/query/client_data.php');
-	echo '<script>var user_id = '.json_encode($_SESSION['user_id']).';</script>';
-	//echo("<script>console.log('PHP: ".$rows."');</script>")
-
-	//yuanta 0x2D281b1eB066EB14Dc769Ec2fcfB2819c8F046Ef	
-	//citi 0x6D623fe432B1e48d57b2A804cee71f1d4eE4b2A1
-	//cathay 0x701c97Fb87fBaC9729897A9b6E3Df7dFd6CB68be
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -42,6 +31,17 @@
 	<!-- 分頁上的 小icon -->
 	<link rel="shortcut icon" type="image/png" href="./images/logo.jpg"/>	
 </head>
+
+<?php
+	include('php/account/session.php');
+	include('php/query/client_data.php');
+	echo '<script>var user_id = '.json_encode($_SESSION['user_id']).';</script>';
+	//echo("<script>console.log('PHP: ".$rows."');</script>")
+
+	//yuanta 0x2D281b1eB066EB14Dc769Ec2fcfB2819c8F046Ef	
+	//citi 0x6D623fe432B1e48d57b2A804cee71f1d4eE4b2A1
+	//cathay 0x701c97Fb87fBaC9729897A9b6E3Df7dFd6CB68be
+?>
 
 <script>	
 
@@ -86,14 +86,17 @@
 		
 				web3.personal.unlockAccount(fromAddress, from_Password, 300);	//解鎖要執行 function 的 account
 				
-				
+				console.log("fuck");
+				console.log("estimateGas: " + myContractInstance.transfer.estimateGas());
+
 				var res = myContractInstance.transfer(	// transfer 是 contract 裡 的一個 function
 						user_id,			//input    String Length Issue
 						to_bank_address,	//input
 						value,	//input
 						{
 							from: fromAddress,	//從哪個ethereum帳戶執行
-							'gas': myContractInstance.transfer.estimateGas() *5 //執行function所需的gas (發現*5比較不會有錯誤)
+							//'gas': myContractInstance.transfer.estimateGas() *100 //執行function所需的gas (發現*5比較不會有錯誤)
+							'gas': 140349
 						},
 						function(err, result) {	//callback 的 function
 							if (!err){
