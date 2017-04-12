@@ -5,6 +5,9 @@
         	echo '<td>';
         		echo $i+1;
     		echo '</td>';
+            echo "<td>";
+                echo  $rs[$i]['id'];
+            echo "</td>";
             echo '<td>';
            		echo $rs[$i]['account'];
             echo '</td>';

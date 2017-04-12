@@ -38,63 +38,77 @@
 	echo '<script>var user_id = '.json_encode($_SESSION['user_id']).';</script>';
 	//echo("<script>console.log('PHP: ".$rows."');</script>")
 
-	//yuanta 0x2D281b1eB066EB14Dc769Ec2fcfB2819c8F046Ef	
-	//citi 0x6D623fe432B1e48d57b2A804cee71f1d4eE4b2A1
-	//cathay 0x701c97Fb87fBaC9729897A9b6E3Df7dFd6CB68be
+	//yuanta 0xf58F04539ADA143aBec19204500D501160c44436	
+	//citi 0x13f42EcB9fBF94Ff33cD22828070F2FA10048a27
+	//cathay 0xB27dc07C2984d9643449E3F9f8feb63236Fc2C98
 ?>
 
 <script>	
 
+	var temp;
 	window.onload = function(){
-		// var event = myContractInstance.Transfer({},{fromBlock: 50000, toBlock: 'latest'} , function(error, result){
-		//   if (!error)
-		//     console.log(result);
-		// });
-		var event = myContractInstance.Exchange({},{fromBlock: 50000, toBlock: 'latest'} , function(error, result){
-		  if (!error)
-		    console.log(result);
-		});
 
+		var event = myContractInstance.Exchange({},
+			{
+				fromBlock: 0,
+				toBlock: 'latest'
+			} , 
+			function(error, result){
+			  	if (!error){
+				  	temp = result;
+				    console.log(result);
+				    console.log(temp.transactionHash);
+					console.log(temp.args.userid.c[0]);
+					console.log(web3.toAscii(temp.args.customer));
+					console.log(temp.args.from);
+					console.log(temp.args.to);
+					console.log(temp.args.value.c[0]);
+				}
+			});
 	};
 
 	function sendTransaction(){		// 在銀行之間轉移元大幣
 	
 		$.LoadingOverlay("show");	// loading 動畫
 
-		var fromAddress = '0x6D623fe432B1e48d57b2A804cee71f1d4eE4b2A1';	//由哪個銀行送出元大幣，暫時寫死
-		var from_Password = 'tony70431';
+		var fromAddress = '0xf58F04539ADA143aBec19204500D501160c44436';	//由哪個銀行送出元大幣，暫時寫死
+		var from_Password = 'yuanta';
 		
 		var from_bank_value = document.getElementById("amount").value;
 		var from_bank_rate = 0;
 
+		var from_bank_userid = document.getElementById("from_bank_userid").innerText;
+
 		var to_bank = exchange_form.to_bank.value;
 
 		var to_bank_address = "";
+
 		$.ajax( { 
 			type : 'POST',
 			data : {to_bank: to_bank},
 			url  : 'php/query/get_bank_address.php',              // <=== CALL THE PHP FUNCTION HERE.
 			dataType: 'json',
-			success: function ( data ) {				// <=== VALUE RETURNED FROM FUNCTION.           
+			success: function ( data ) {				// <=== VALUE RETURNED FROM FUNCTION.     
+
 				to_bank_address = data['address'];
 				from_bank_rate = data['rate'];
 
-				var value = from_bank_value/from_bank_rate;
+				var value = Math.round(from_bank_value/from_bank_rate);
 
-				console.log("user_id:", user_id, "address:", fromAddress, to_bank_address, "value:" , value);
-				user_id = web3.toHex({user_id: user_id});	//	String要先轉成hex value
+				console.log("from_bank_userid:", from_bank_userid, "user_id:", user_id, "address:", fromAddress, to_bank_address, "value:" , value);
+				user_id = web3.toHex(user_id);	//	String要先轉成hex value
 				console.log("user_id's hex value:", user_id);
 		
 				web3.personal.unlockAccount(fromAddress, from_Password, 300);	//解鎖要執行 function 的 account
 
 				var res = myContractInstance.transfer(	// transfer 是 contract 裡 的一個 function
+						from_bank_userid,
 						user_id,			//input    String Length Issue
 						to_bank_address,	//input
 						value,	//input
 						{
 							from: fromAddress,	//從哪個ethereum帳戶執行
-							//'gas': myContractInstance.transfer.estimateGas() *100 //執行function所需的gas (發現*5比較不會有錯誤)	//目前似乎壞掉惹
-							'gas': 140349	//從Mist裡面看的
+							'gas': myContractInstance.transfer.estimateGas(from_bank_userid,user_id,to_bank_address,value) //執行function所需的gas ((發現放input突然就可以了
 						},
 						function(err, result) {	//callback 的 function
 							if (!err){
@@ -135,8 +149,15 @@
 				//console.log(data['cathay']);               // <=== VALUE RETURNED FROM FUNCTION.
 				rate = data;
 
-				document.getElementById("get_amount").innerText = value*rate[from_bank]['rate']/rate[to_bank]['rate'] +"點";
-				document.getElementById("fee").innerText = value*0.005 +"點";
+				var get_amount = Math.round(value*rate[from_bank]['rate']/rate[to_bank]['rate']);
+				var fee = value*0.005;
+				if(fee<1)
+					fee = 1;
+				else
+					fee = Math.round(fee);
+
+				document.getElementById("get_amount").innerText = get_amount +"點";
+				document.getElementById("fee").innerText = fee +"點";
 
 				$.LoadingOverlay("hide");
 			},
@@ -157,8 +178,10 @@
 
 		// set from_bank's value
 		var select_row = element.parentNode.parentNode.rowIndex;
-		var account_name = table.rows[select_row].cells[2].innerHTML;
-		document.getElementById("from_bank").innerText = account_name; 
+		var from_bank_userid = table.rows[select_row].cells[1].innerHTML;
+		var account_name = table.rows[select_row].cells[3].innerHTML;
+		document.getElementById("from_bank").innerText = account_name;
+		document.getElementById("from_bank_userid").innerText = from_bank_userid;
 
    		// reset select's option
    		var modal_select = document.getElementById("to_bank");
@@ -171,7 +194,7 @@
 		var row_length = document.getElementById("account_table").rows.length;
 		var count = 0;	//排除選自己的狀況
 		for (i = 1; i < row_length; i++) { 
-		    var option_text = table.rows[i].cells[2].innerHTML;
+		    var option_text = table.rows[i].cells[3].innerHTML;
 		    if (account_name == option_text) {
 		    	count = 1;
 		    	continue;
@@ -284,6 +307,7 @@
 	               <thead>
 	                    <tr>
 	                    	<th>#</th>
+	                    	<th>ID</th>
 	                        <th>帳戶號碼</th>
 	                        <th>帳戶名稱</th>
 	                        <th>擁有者姓名</th>
@@ -325,6 +349,12 @@
 	        </div>
 	        <form class="form-horizontal" method="post" id="exchange_form" name="exchange_form" action="javascript:sendTransaction();">
 		        <div class="modal-body">
+		        	<div class="form-group">
+						<label for="bank" class="col-sm-3 control-label">ID:</label>
+						<div class="col-sm-9">
+							<p id="from_bank_userid" class="p_form"></p>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="bank" class="col-sm-3 control-label">轉出帳戶:</label>
 						<div class="col-sm-9">
@@ -354,6 +384,7 @@
 						<label for="number" class="col-sm-3 control-label">手續費:</label>
 						<div class="col-sm-9">
 					    	<p id="fee" class="p_form">0點</p>
+					    	<p class="p_form">至少收取1點</p>
 						</div>
 					</div>
 		        </div>
