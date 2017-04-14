@@ -34,9 +34,9 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 			  <ul class="nav navbar-nav navbar-right">
-	        	<li><a href="http://140.113.65.49/yuanta_sell.php">銀行端</a></li>
+	        	<li><a href="../../bank.html">銀行端</a></li>
 				<li>
-					<a href="../../index.php">
+					<a href="../../index.html">
 						<span class="glyphicon glyphicon-home"></span> 
 							首頁
 					</a>
@@ -49,6 +49,9 @@
 
 		<!-- 註冊 -->
 		<div class="container" id="margin">
+			<div class="alert alert-danger">
+			  <strong>注意!</strong> 此網站無任何商業行為，純粹為學術研究，請勿當真。
+			</div>
 			<div class="row main">
 				<div class="main-login main-center">
 					<h1 class="title text-center">註冊帳號</h1>
