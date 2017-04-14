@@ -172,7 +172,7 @@
 		// set from_bank's value
 		var select_row = element.parentNode.parentNode.rowIndex;
 		var from_bank_userid = table.rows[select_row].cells[1].innerHTML;
-		var account_name = table.rows[select_row].cells[3].innerHTML;
+		var account_name = table.rows[select_row].cells[2].innerHTML;
 		document.getElementById("from_bank").innerText = account_name;
 		document.getElementById("from_bank_userid").innerText = from_bank_userid;
 
@@ -187,7 +187,7 @@
 		var row_length = document.getElementById("account_table").rows.length;
 		var count = 0;	//排除選自己的狀況
 		for (i = 1; i < row_length; i++) { 
-		    var option_text = table.rows[i].cells[3].innerHTML;
+		    var option_text = table.rows[i].cells[2].innerHTML;
 		    if (account_name == option_text) {
 		    	count = 1;
 		    	continue;
@@ -218,7 +218,7 @@
         	<li><a href="./shopping_example/details.html">購物</a></li>
         	<li><a href="./bank.html">銀行端</a></li>
 			<li>
-				<a href="php/account/logout.php"><span class="glyphicon glyphicon-log-out"></span> 
+				<a href="./index.html"><span class="glyphicon glyphicon-log-out"></span> 
 					登出					
 				</a>
 			</li>
@@ -305,72 +305,39 @@
 	                </thead>
 	                <tbody>
 	                	<tr>
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                0134285 0134589
-                            </td>
-                            <td>
-                                XX銀行
-                            </td>
-                            <td>
-                                林書豪
-                            </td>
-                            <td><span class="label label-success">
-                                1717
+                            <td>1</td>
+                            <td>0134285 0134589</td>
+                            <td>國泰銀行</td>
+                            <td>林書豪</td>
+                            <td><span class="label label-success">1717
                             </span>
-                            <td>
-                                2016/4/1
-                            </td>
+                            <td>2016/4/1</td>
                             <td cass="col-md-2">
                                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#account_modal" style="margin-right: 3px"onclick="set_account_modal(this)">交換點數</button>
                                 <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                2
-                            </td>
-                            <td>
-                                0134589 0134285
-                            </td>
-                            <td>
-                                XX銀行
-                            </td>
-                            <td>
-                                林書豪
-                            </td>
-                            <td><span class="label label-success">
-                                2525
+                            <td>2</td>
+                            <td>0134589 0134285</td>
+                            <td>花旗銀行</td>
+                            <td>林書豪</td>
+                            <td><span class="label label-success">2525
                             </span>
-                            <td>
-                                2016/5/1
-                            </td>
+                            <td>2016/5/1</td>
                             <td cass="col-md-2">
                                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#account_modal" style="margin-right: 3px"onclick="set_account_modal(this)">交換點數</button>
                                 <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                3
-                            </td>
-                            <td>
-                                0367821 0235641
-                            </td>
-                            <td>
-                                XX銀行
-                            </td>
-                            <td>
-                                林書豪
-                            </td>
-                            <td><span class="label label-success">
-                                3232
+                            <td>3</td>
+                            <td>0367821 0235641</td>
+                            <td>元大銀行</td>
+                            <td>林書豪</td>
+                            <td><span class="label label-success">3232
                             </span>
-                            <td>
-                                2016/6/1
-                            </td>
+                            <td>2016/6/1</td>
                             <td cass="col-md-2">
                                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#account_modal" style="margin-right: 3px"onclick="set_account_modal(this)">交換點數</button>
                                 <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
@@ -406,7 +373,7 @@
 	        <form class="form-horizontal" method="post" id="exchange_form" name="exchange_form" action="javascript:sendTransaction();">
 		        <div class="modal-body">
 		        	<div class="form-group">
-						<label for="bank" class="col-sm-3 control-label">ID:</label>
+						<label for="bank" class="col-sm-3 control-label">帳戶號碼:</label>
 						<div class="col-sm-9">
 							<p id="from_bank_userid" class="p_form"></p>
 						</div>
