@@ -1,14 +1,4 @@
 
-<?php
-	include('php/account/session.php');
-	include('php/query/client_data.php');
-	//echo("<script>console.log('PHP: ".$rows."');</script>")
-
-	//yuanta 0xEC013a9fC42aDADd47aA5B50fe6dac4c1d1662b1	
-	//citi 0x5ba8Edbd3e368407C4C249838e2A5eFDB949B146
-	//cathay 0x701c97Fb87fBaC9729897A9b6E3Df7dFd6CB68be
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,7 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<!-- 套用 Ethereum 相關 api -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/4.0.0/bignumber.min.js"></script>
-	<script type="text/javascript" src="./dist/web3-light.js"></script>
+	<script type="text/javascript" src="./dist/web3.js"></script>
 	
 	<!-- my contract -->
 	<script src="js/contract.js"></script>
@@ -44,87 +34,96 @@
 
 <script>	
 
+	var temp;
 	window.onload = function(){
-		var event = myContractInstance.Transfer({},{fromBlock: 50000, toBlock: 'latest'} , function(error, result){
-		  if (!error)
-		    console.log(result);
-		});
+
+		bootbox.alert("此網站無任何商業行為，純粹為學術研究，請勿當真。");
+
+		// var event = myContractInstance.Exchange({},
+		// 	{
+		// 		fromBlock: 0,
+		// 		toBlock: 'latest'
+		// 	} , 
+		// 	function(error, result){
+		// 	  	if (!error){
+		// 		  	temp = result;
+		// 		    console.log(result);
+		// 		    console.log(temp.transactionHash);
+		// 			console.log(temp.args.userid.c[0]);
+		// 			console.log(web3.toAscii(temp.args.customer));
+		// 			console.log(temp.args.from);
+		// 			console.log(temp.args.to);
+		// 			console.log(temp.args.value.c[0]);
+		// 		}
+		// 	});
 	};
 
 	function sendTransaction(){		// 在銀行之間轉移元大幣
 	
 		$.LoadingOverlay("show");	// loading 動畫
 
-		var fromAddress = '0x6D623fe432B1e48d57b2A804cee71f1d4eE4b2A1';	//由哪個銀行送出元大幣，暫時寫死
-		var from_Password = 'tony70431';
+		var fromAddress = '0xf58F04539ADA143aBec19204500D501160c44436';	//由哪個銀行送出元大幣，暫時寫死
+		var from_Password = 'yuanta';
 		
 		var from_bank_value = document.getElementById("amount").value;
-
-		if (from_bank_value == '') {
-			$.LoadingOverlay("hide");
-			alert('please input a value');
-			return;
-		}
-
 		var from_bank_rate = 0;
+
+		var from_bank_userid = document.getElementById("from_bank_userid").innerText;
 
 		var to_bank = exchange_form.to_bank.value;
 
 		var to_bank_address = "";
-		$.ajax( { 
-			type : 'POST',
-			data : {to_bank: to_bank},
-			url  : 'php/query/get_bank_address.php',              // <=== CALL THE PHP FUNCTION HERE.
-			dataType: 'json',
-			success: function ( data ) {
-				//console.log(data['cathay']);               // <=== VALUE RETURNED FROM FUNCTION.
-				to_bank_address = data['address'];
-				from_bank_rate = data['rate'];
 
-				var value = from_bank_value/from_bank_rate;
+		var bank = new new Object();
+		bank.yuanta.address='0xf58F04539ADA143aBec19204500D501160c44436';
+		bank.citi.address='0x13f42EcB9fBF94Ff33cD22828070F2FA10048a27';
+		bank.cathay.address='0xB27dc07C2984d9643449E3F9f8feb63236Fc2C98';
 
-				console.log("address:", fromAddress, to_bank_address, "value:" , value);
-		
-				// web3.personal.unlockAccount(fromAddress, from_Password, 300);	//解鎖要執行 function 的 account
-				
-				// var res = myContractInstance.transfer(	// transfer 是 contract 裡 的一個 function
-				// 		ToAddress,	//input
-				// 		value,	//input
-				// 		{
-				// 			from: fromAddress,	//從哪個ethereum帳戶執行
-				// 			'gas': myContractInstance.transfer.estimateGas() *5 //執行function所需的gas (發現*5比較不會有錯誤)
-				// 		},
-				// 		function(err, result) {	//callback 的 function
-				// 			if (!err){
-				// 				console.log(result);
-				// 				f_prompt(result);	//瀏覽器 會 顯示 交易成功視窗
-				// 			}
-				// 			else {
-				// 				console.log(err);
-				// 				alert(err);
-				// 			}
-				// 		}
-				// 	);
+		bank.yuanta.rate=100;
+		bank.citi.rate=200;
+		bank.cathay.rate=90;
 
-				web3.eth.filter('latest', function(error, result){
-				  if (!error)
-				    console.log(result);
-				});
+		if (to_bank=="元大銀行") {
+			to_bank_address = bank.yuanta.address;
+		}else if (to_bank=="花旗銀行") {
+			to_bank_address = bank.citi.address;
+		}else if (to_bank=="國泰銀行") {
+			to_bank_address = bank.cathay.address;
+		}
 
-				var filter = web3.eth.filter({fromBlock:0, toBlock: 'latest', address: myContractAddress, 'topics':[web3.sha3('Transfer(string,uint256,string,string,uint256)')]});
-				filter.watch(function(error, result) {
-				   console.log(result);
-				})
+		from_bank_rate = bank.yuanta.rate;
 
-				alert('Success');
-				$.LoadingOverlay("hide");
-			},
-			error: function ( xhr ) {
-				console.log(xhr);
-				$.LoadingOverlay("hide");
-			}
-		});	
-		
+		var value = Math.round(from_bank_value/from_bank_rate);
+
+		console.log("from_bank_userid:", from_bank_userid, "user_id:", user_id, "address:", fromAddress, to_bank_address, "value:" , value);
+		user_id = web3.toHex(user_id);	//	String要先轉成hex value
+		console.log("user_id's hex value:", user_id);
+
+		web3.personal.unlockAccount(fromAddress, from_Password, 300);	//解鎖要執行 function 的 account
+
+		var res = myContractInstance.transfer(	// transfer 是 contract 裡 的一個 function
+				from_bank_userid,
+				user_id,			//input    String Length Issue
+				to_bank_address,	//input
+				value,	//input
+				{
+					from: fromAddress,	//從哪個ethereum帳戶執行
+					'gas': myContractInstance.transfer.estimateGas(from_bank_userid,user_id,to_bank_address,value) //執行function所需的gas ((發現放input突然就可以了
+				},
+				function(err, result) {	//callback 的 function
+					if (!err){
+						console.log("Transaction_Hash: " + result);
+						bootbox.alert("Transaction_Hash: " + result);	//瀏覽器 會 顯示 交易成功視窗
+					}
+					else {
+						console.log(err);
+						alert(err);
+					}
+				}
+			);
+
+		$('#account_modal').modal('hide');	//隱藏交換點數視窗
+		$.LoadingOverlay("hide");	//隱藏 loading 動畫
 	}
 
 	function calculate(){  //計算手續費(0.5%)
@@ -143,8 +142,15 @@
 				//console.log(data['cathay']);               // <=== VALUE RETURNED FROM FUNCTION.
 				rate = data;
 
-				document.getElementById("get_amount").innerText = value*rate[from_bank]['rate']/rate[to_bank]['rate'] +"點";
-				document.getElementById("fee").innerText = value*0.005 +"點";
+				var get_amount = Math.round(value*rate[from_bank]['rate']/rate[to_bank]['rate']);
+				var fee = value*0.005;
+				if(fee<1)
+					fee = 1;
+				else
+					fee = Math.round(fee);
+
+				document.getElementById("get_amount").innerText = get_amount +"點";
+				document.getElementById("fee").innerText = fee +"點";
 
 				$.LoadingOverlay("hide");
 			},
@@ -158,12 +164,17 @@
 
 	function set_account_modal(element){
 
+		//clear previous input
+		document.getElementById("amount").value = ""; 
+
 		var table = document.getElementById("account_table");
 
 		// set from_bank's value
 		var select_row = element.parentNode.parentNode.rowIndex;
+		var from_bank_userid = table.rows[select_row].cells[1].innerHTML;
 		var account_name = table.rows[select_row].cells[2].innerHTML;
-		document.getElementById("from_bank").innerText = account_name; 
+		document.getElementById("from_bank").innerText = account_name;
+		document.getElementById("from_bank_userid").innerText = from_bank_userid;
 
    		// reset select's option
    		var modal_select = document.getElementById("to_bank");
@@ -183,18 +194,6 @@
 		    }
 		    modal_select.options[i-1-count] = new Option(option_text, option_text);
 		}
-
-		// myContractInstance.Transfer({address : '0x6D623fe432B1e48d57b2A804cee71f1d4eE4b2A1'}, { fromBlock: 0, toBlock: 'latest' }).get((error, eventResult) => {
-		//   if (error)
-		//     console.log('Error in myEvent event handler: ' + error);
-		//   else
-		//     console.log('myEvent: ' + JSON.stringify(eventResult.args));
-		// });
-
-		myContractInstance.Transfer().watch(function(error, result){
-			console.log(JSON.stringify(result.args));
-		});
-
 	}
 	
 </script>
@@ -216,11 +215,11 @@
 		  	<li><a href="#member">個人</a></l>
 		  	<li><a href="#div_account">帳戶</a></li>
         	<li><a href="#div_history">紀錄</a></li>
-        	<li><a href="http://140.113.65.49/shopping_example/details.html">購物</a></li>
-        	<li><a href="http://140.113.65.49/bank.php">銀行端</a></li>
+        	<li><a href="./shopping_example/details.html">購物</a></li>
+        	<li><a href="./bank.html">銀行端</a></li>
 			<li>
-				<a href="php/account/logout.php"><span class="glyphicon glyphicon-log-out"></span> 
-					登出
+				<a href="./index.html"><span class="glyphicon glyphicon-log-out"></span> 
+					登出					
 				</a>
 			</li>
 		  </ul>
@@ -231,6 +230,9 @@
 	
 	<!-- 會員資料 -->
 	<div class="container">
+		<div class="alert alert-danger">
+			  <strong>注意!</strong> 此網站無任何商業行為，純粹為學術研究，請勿當真。
+			</div>
 		<div class="jumbotron" id="member">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
@@ -242,42 +244,34 @@
                     <tbody>
    		 			  <tr>
                         <td>姓名:</td>
-                        <td><?php echo $user_data['name'] ?></td>
+                        <td>林書豪</td>
                       </tr>
                       <tr>
                         <td>帳號:</td>
-                        <td><?php echo $user_data['username'] ?></td>
+                        <td>jeremylin</td>
                       </tr>
                       <tr>
                         <td>密碼:</td>
                         <td>
-                        	<?php 
-                        		$length = strlen($user_data['password']);
-                        		for ($i=0; $i < $length ; $i++) { 
-                        			if($i == 0 || $i == $length-1 ){
-                        				echo $user_data['password'][$i];
-                        			}else
-                        				echo '*';
-                        		} 
-                        	?> 	
+                        	p******d
                         </td>
                       </tr>
                       <tr>
                         <td>性別:</td>
-                        <td><?php echo $user_data['gender'] ?></td>
+                        <td>男</td>
                       </tr>
                       <tr>
                         <td>身分證字號:</td>
-                        <td><?php echo $user_data['user_id'] ?></td>
+                        <td>G123456789</td>
                       </tr>
                       <tr>
                         <td>註冊時間:</td>
-                        <td><?php echo $user_data['regist_time'] ?></td>
+                        <td>2016/4/1</td>
                       </tr>
                       
                       <tr>
                         <td>Email:</td>
-                        <td><a href="mailto:<?php echo $user_data['email'] ?>"><?php echo $user_data['email'] ?></a></td>
+                        <td><a href="mailto:jeremylin@gmail.com">jeremylin@gmail.com</a></td>
                       </tr>
                     </tbody>
                   </table>
@@ -310,9 +304,45 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                	<?php 
-	                		include('php/part/client/client_account.php');
-	                	 ?>
+	                	<tr>
+                            <td>1</td>
+                            <td>0134285 0134589</td>
+                            <td>國泰銀行</td>
+                            <td>林書豪</td>
+                            <td><span class="label label-success">1717
+                            </span>
+                            <td>2016/4/1</td>
+                            <td cass="col-md-2">
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#account_modal" style="margin-right: 3px"onclick="set_account_modal(this)">交換點數</button>
+                                <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>0134589 0134285</td>
+                            <td>花旗銀行</td>
+                            <td>林書豪</td>
+                            <td><span class="label label-success">2525
+                            </span>
+                            <td>2016/5/1</td>
+                            <td cass="col-md-2">
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#account_modal" style="margin-right: 3px"onclick="set_account_modal(this)">交換點數</button>
+                                <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>0367821 0235641</td>
+                            <td>元大銀行</td>
+                            <td>林書豪</td>
+                            <td><span class="label label-success">3232
+                            </span>
+                            <td>2016/6/1</td>
+                            <td cass="col-md-2">
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#account_modal" style="margin-right: 3px"onclick="set_account_modal(this)">交換點數</button>
+                                <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
+                        </tr>
 	                </tbody>
 	            </table>
 	        </div>
@@ -342,6 +372,12 @@
 	        </div>
 	        <form class="form-horizontal" method="post" id="exchange_form" name="exchange_form" action="javascript:sendTransaction();">
 		        <div class="modal-body">
+		        	<div class="form-group">
+						<label for="bank" class="col-sm-3 control-label">帳戶號碼:</label>
+						<div class="col-sm-9">
+							<p id="from_bank_userid" class="p_form"></p>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="bank" class="col-sm-3 control-label">轉出帳戶:</label>
 						<div class="col-sm-9">
@@ -371,6 +407,7 @@
 						<label for="number" class="col-sm-3 control-label">手續費:</label>
 						<div class="col-sm-9">
 					    	<p id="fee" class="p_form">0點</p>
+					    	<p class="p_form">至少收取1點</p>
 						</div>
 					</div>
 		        </div>
@@ -449,11 +486,82 @@
 	<!-- 最近交易結束 -->
 
 	<!-- 合作銀行列表開始 -->
-		<?php include('php/part/cooperate_banklist.php'); ?>
+		<div id="coop" class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3 class="text-center"><b>合作銀行</b></h3>
+					<hr />
+				</div>
+			</div>
+			<div id="coop-bank" class="row">
+				<div class="col-xs-6 col-sm-2">
+					<div class="thumbnail text-center">
+						<img alt="" src="images/yuanta_logo.png" />
+						<div class="caption">
+							<h3 class="h4">元大銀行</h3>						
+							<p><a href="https://ebank.yuantabank.com.tw/ib/" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-2">
+					<div class="thumbnail text-center">
+						<img alt="" src="images/cathay_logo.png"/>
+						<div class="caption">
+							<h3 class="h4">國泰世華銀行</h3>						
+							<p><a href="https://www.mybank.com.tw/mybank" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-2">
+					<div class="thumbnail text-center">
+						<img alt="" src="images/citi_logo.png" />
+						<div class="caption">
+							<h3 class="h4">花旗銀行</h3>						
+							<p><a href="https://www.citibank.com.tw/" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-2">
+					<div class="thumbnail text-center">
+						<img alt="" src="images/yuanta_logo.png" />
+						<div class="caption">
+							<h3 class="h4">元大銀行</h3>						
+							<p><a href="https://ebank.yuantabank.com.tw/ib/" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-2">
+					<div class="thumbnail text-center">
+						<img alt="" src="images/cathay_logo.png"/>
+						<div class="caption">
+							<h3 class="h4">國泰世華銀行</h3>						
+							<p><a href="https://www.mybank.com.tw/mybank" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-2">
+					<div class="thumbnail text-center">
+						<img alt="" src="images/citi_logo.png" />
+						<div class="caption">
+							<h3 class="h4">花旗銀行</h3>						
+							<p><a href="https://www.citibank.com.tw/" class="btn btn-primary btn-lg" role="button">進入網站</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	<!-- 合作銀行列表結束 -->
 
 	<!-- 頁尾  -->
-		<?php include('php/part/footer.php'); ?>	
+		<footer id="footer" class="container-fluid text-center">
+			<hr/>
+			<a href="#myPage" title="To Top">
+				<span class="glyphicon glyphicon-chevron-up"></span>
+				<div>
+					<label for="To Top">To Top</label>
+				</div>
+			</a>
+		</footer>	
 	<!-- 頁尾結束  -->
 
 </body>

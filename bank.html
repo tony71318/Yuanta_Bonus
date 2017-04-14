@@ -86,6 +86,8 @@
 	window.onload = function listBonus(sender,e) {	//列出點數之間的匯率
 		// window.onload = 在網頁開啟、重整時 執行function
 	
+		bootbox.alert("此網站無任何商業行為，純粹為學術研究，請勿當真。");
+
 		// 隱藏表格
 		$("#searchResult").hide();
 
@@ -162,13 +164,13 @@
 		  	<!-- <li><a href="#intro">簡介</a></li>
         	<li><a href="#bonus">紅利</a></li> -->
         	<li>
-        		<a href="http://140.113.65.49/shopping_example/details.html">
+        		<a href="./shopping_example/details.html">
         			<i class="glyphicon glyphicon-shopping-cart"></i>
         				購物
         		</a>
         	</li>
         	<li>
-        		<a href="http://140.113.65.49/index.php">
+        		<a href="./index.html">
 		        	<i class="glyphicon glyphicon-home"></i>
 		        		用戶端
 		        </a>
@@ -179,38 +181,11 @@
 						註冊
 				</a>
 			</li>
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+			<li>
+				<a class="dropdown-toggle" data-toggle="dropdown" href="./client.html">
 					<span class="glyphicon glyphicon-log-in"></span> 
 						登入
-					<span class="caret"></span>
 				</a>
-				<ul id="login-dp" class="dropdown-menu dropdown-menu-right">
-					<li>
-						 <div class="row">
-								<div class="col-md-12">
-									 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-											<div class="form-group">
-												 <label class="sr-only" for="exampleInputEmail2">Email address</label>
-												 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-											</div>
-											<div class="form-group">
-												 <label class="sr-only" for="exampleInputPassword2">Password</label>
-												 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-											</div>
-											<div class="form-group">
-												 <button type="submit" id="sign" class="btn btn-primary btn-block">登入</button>
-											</div>
-											<div class="checkbox">
-												 <label>
-												 	<input type="checkbox"> 保持登入
-												 </label>
-											</div>
-									 </form>
-								</div>
-						 </div>
-					</li>
-				</ul>
 			</li>
 		  </ul>
 		</div>
@@ -220,6 +195,9 @@
 
 	<!-- 會員資料 -->
 	<div class="container">
+		<div class="alert alert-danger">
+		  <strong>注意!</strong> 此網站無任何商業行為，純粹為學術研究，請勿當真。
+		</div>
 		<div class="jumbotron" id="member">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
